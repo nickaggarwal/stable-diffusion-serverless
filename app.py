@@ -6,10 +6,12 @@ from huggingface_hub import snapshot_download
 import os
 
 class InferlessPythonModel:
-    def download(self):
-        snapshot_download(
-            "stabilityai/stable-diffusion-2-1"
-        )
+    def download_weights(self):
+        folder_path = os.environ.get('MODEL_WEIGHTS_DIR')
+        print("Model dir :  "+ folder_path)
+        hf_path = os.environ.get('HF_HOME')
+        print("HF Home :  "+ folder_path)
+        snapshot_download( "stabilityai/stable-diffusion-2-1")
     
     def initialize(self):
         self.pipe = StableDiffusionPipeline.from_pretrained(
